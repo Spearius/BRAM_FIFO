@@ -27,16 +27,16 @@ Additionally, a Python script generates 32 data values. These are 16-bit values 
 ## Testbench
 The functionality was verified using a testbench with the following ten test cases:
 
-1\. Reset: Clears the FIFO count and output registers.  
-2\. Data Patterns: Writes and reads `0000`, `FFFF`, `AAAA`, and `5555` to verify correct data storage and FIFO ordering.  
-3\. Fill All Memory Locations: Writes 32 values to fill the FIFO and checks the full and almost-full flags.  
-4\. Overflow: Attempts to write `DEAD` while the FIFO is full and verifies that the write is rejected.  
-5\. Full FIFO Readback: Reads all stored values and verifies their order.  
-6\. Underflow: Attempts to read an empty FIFO and verifies that the request is rejected.  
-7\. Simultaneous Read/Write: Verifies simultaneous read and write operations when the FIFO contains data.  
-8\. Simultaneous Read/Write While Empty: Verifies simultaneous read and write operations when the FIFO is empty.  
-9\. Simultaneous Read/Write While Full: Verifies simultaneous read and write operations when the FIFO is full.  
-10\. Python-Generated Data: Verifies that the 32 Python-generated 16-bit values are written and read back in the correct order.  
+1\. `Reset`: Clears the FIFO count and output registers.  
+2\. `Data Patterns`: Writes and reads `0000`, `FFFF`, `AAAA`, and `5555` to verify correct data storage and FIFO ordering.  
+3\. `Fill All Memory Locations`: Writes 32 values to fill the FIFO and checks the full and almost-full flags.  
+4\. `Overflow`: Attempts to write `DEAD` while the FIFO is full and verifies that the write is rejected.  
+5\. `Full FIFO Readback`: Reads all stored values and verifies their order.  
+6\. `Underflow`: Attempts to read an empty FIFO and verifies that the request is rejected.  
+7\. `Simultaneous Read/Write`: Verifies simultaneous read and write operations when the FIFO contains data.  
+8\. `Simultaneous Read/Write While Empty`: Verifies simultaneous read and write operations when the FIFO is empty.  
+9\. `Simultaneous Read/Write While Full`: Verifies simultaneous read and write operations when the FIFO is full.  
+10\. `Python-Generated Data`: Verifies that the 32 Python-generated 16-bit values are written and read back in the correct order.  
 
 ### Behavioral Simulation Waveforms
 Below is the behavioral simulation waveform with the testbench values:
