@@ -58,4 +58,4 @@ Below is the behavioral simulation waveform with the Python-generated Script val
 ## Block Diagram
 Below is the RTL schematic of the BRAM FIFO which was coded versus generated through the IP Catalog:
 
-![FIFO Block Diagram](Images/BlockDiagram.png)
+![FIFO Block Diagram](Images/RTL_FIFO_BlockDiagram.png)
