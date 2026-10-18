@@ -1,36 +1,31 @@
-BRAM FIFO
+\# BRAM FIFO
 
 
 
-Overview
+\## Overview
 
 This design implements a First-In-First-Out (FIFO) memory container using System Verilog HDL and Block RAM (BRAM) in Vivado. The FIFO implementation will write (input) incoming data and read (output) it in the same order it was written.
 
 
 
-Software
+\## Software
 
-Vivado 2023.1
-
-System Verilog HDL
-
+* Vivado 2023.1
+* System Verilog HDL
 
 
-Functionality
+
+\## Functionality
 
 The parameters for this FIFO will be as follows:
 
 
 
-WIDTH = 16 			Bit width per word stored
-
-DEPTH = 32			Maximum amount of memory address locations
-
-ALMOST\_EMPTY\_THRESHOLD = 1	Threshold to notify when FIFO is almost empty
-
-ALMOST\_FULL\_THRESHOLD = 31	Threshold to notify when FIFO is almost full
-
-READ LATENCY = 1		Register Delay stages for the output
+* WIDTH = 16 			Bit width per word stored
+* DEPTH = 32			Maximum amount of memory address locations
+* ALMOST\_EMPTY\_THRESHOLD = 1	Threshold to notify when FIFO is almost empty
+* ALMOST\_FULL\_THRESHOLD = 31	Threshold to notify when FIFO is almost full
+* READ LATENCY = 1		Register Delay stages for the output
 
 
 
@@ -42,21 +37,21 @@ Additionally, there is a Python-generated script that will write 32 data values.
 
 
 
-Testbench
+\## Testbench
 
 The functionality was verified using a testbench with the following ten test cases:
 
 
 
-1.) Reset - clears the FIFO count and output registers
+1.) Reset - clears the FIFO count and output registers.
 
 2.) Data Patterns - Writes and reads 0000, FFFF, AAAA, and 5555 to verify correct data storage and FIFO ordering.
 
 3.) Fill All Memory Locations - writes 32 values to fill the FIFO and checks the full and almost full threshold flags.
 
-4.) Overflow - Writes "DEAD" while the FIFO is full
+4.) Overflow - Writes "DEAD" while the FIFO is full.
 
-5.) Full FIFO Readback - Reads all stored values and verifies the order
+5.) Full FIFO Readback - Reads all stored values and verifies the order.
 
 6.) Underflow - Attempts to read an empty FIFO and verifies that the request is rejected.
 
@@ -67,6 +62,18 @@ The functionality was verified using a testbench with the following ten test cas
 9.) Simultaneous Read/ Write while full - verifies simultaneous read and write when the FIFO is full.
 
 10.) Python-generated Data - tests the 32 8-bit data values generated through the Python script if it is written and read back in the correct order.
+
+
+
+Below are the Behavioral Simulation waveforms:
+
+
+
+
+
+
+
+\## Block Diagram
 
 
 
