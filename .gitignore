@@ -1,0 +1,19 @@
+# Vivado generated files
+*.cache/
+*.runs/
+*.sim/
+*.hw/
+*.ip_user_files/
+.Xil/
+*.jou
+*.log
+*.str
+*.backup.jou
+*.backup.log
+
+# Generated Vivado project
+generated_project/
+
+# Python cache
+__pycache__/
+*.pyc
