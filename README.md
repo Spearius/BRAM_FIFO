@@ -4,72 +4,87 @@
 
 \## Overview
 
-This design implements a First-In-First-Out (FIFO) memory container using System Verilog HDL and Block RAM (BRAM) in Vivado. The FIFO implementation will write (input) incoming data and read (output) it in the same order it was written.
+
+
+This design implements a First-In-First-Out (FIFO) memory container using SystemVerilog HDL and Block RAM (BRAM) in Vivado. The FIFO writes incoming data into memory and reads it in the same order it was written.
 
 
 
 \## Software
 
-* Vivado 2023.1
-* System Verilog HDL
+
+
+\- Vivado 2023.1
+
+\- SystemVerilog HDL
+
+\- Python 3
 
 
 
 \## Functionality
 
-The parameters for this FIFO will be as follows:
+
+
+The parameters for this FIFO are as follows:
 
 
 
-* WIDTH = 16 			Bit width per word stored
-* DEPTH = 32			Maximum amount of memory address locations
-* ALMOST\_EMPTY\_THRESHOLD = 1	Threshold to notify when FIFO is almost empty
-* ALMOST\_FULL\_THRESHOLD = 31	Threshold to notify when FIFO is almost full
-* READ LATENCY = 1		Register Delay stages for the output
+\- `WIDTH = 16`: Bit width per stored word.
+
+\- `DEPTH = 32`: Maximum number of memory locations.
+
+\- `ALMOST\_EMPTY\_THRESHOLD = 1`: Threshold indicating when the FIFO is almost empty.
+
+\- `ALMOST\_FULL\_THRESHOLD = 31`: Threshold indicating when the FIFO is almost full.
+
+\- `READ\_LATENCY = 1`: Number of registered output pipeline stages.
 
 
 
-The way this FIFO program works is by using the FPGA's internal memory known as Block RAM to store incoming data. A write pointer will determine the address location where the incoming data gets stored. Then, a read pointer will determine the memory address location from where the data is retrieved. While this process occurs, there will be a data count to track the number of data stored in the FIFO container. Based on this data counter, there will be status flags that will triggers to indicate when the FIFO is almost empty, empty, almost full, or full. The write pointer, read pointer, and data counter will update on the rising edge of the clock cycle.
+The FIFO uses the FPGA's internal memory, known as Block RAM (BRAM), to store incoming data. A write pointer determines the memory address where incoming data is stored, while a read pointer determines the memory address from which data is retrieved. A data counter tracks the number of words stored in the FIFO. Based on this counter, status flags indicate whether the FIFO is almost empty, empty, almost full, or full. The write pointer, read pointer, and data counter update on the rising edge of the clock.
 
 
 
-Additionally, there is a Python-generated script that will write 32 data values. The data in this script is also 16-bit values stored in hexadecimal format. This will be shown in the testbench, where one of the test cases load these values using the $readmemh function to verify all values can be written and read through the FIFO.
+Additionally, a Python script generates 32 data values. These are 16-bit values stored in hexadecimal format. The testbench loads the values using the `$readmemh` function to verify that all values can be written into and read from the FIFO in the correct order.
 
 
 
 \## Testbench
 
+
+
 The functionality was verified using a testbench with the following ten test cases:
 
 
 
-1.) Reset - clears the FIFO count and output registers.
+1\. \*\*Reset:\*\* Clears the FIFO count and output registers.
 
-2.) Data Patterns - Writes and reads 0000, FFFF, AAAA, and 5555 to verify correct data storage and FIFO ordering.
+2\. \*\*Data Patterns:\*\* Writes and reads `0000`, `FFFF`, `AAAA`, and `5555` to verify correct data storage and FIFO ordering.
 
-3.) Fill All Memory Locations - writes 32 values to fill the FIFO and checks the full and almost full threshold flags.
+3\. \*\*Fill All Memory Locations:\*\* Writes 32 values to fill the FIFO and checks the full and almost-full flags.
 
-4.) Overflow - Writes "DEAD" while the FIFO is full.
+4\. \*\*Overflow:\*\* Attempts to write `DEAD` while the FIFO is full and verifies that the write is rejected.
 
-5.) Full FIFO Readback - Reads all stored values and verifies the order.
+5\. \*\*Full FIFO Readback:\*\* Reads all stored values and verifies their order.
 
-6.) Underflow - Attempts to read an empty FIFO and verifies that the request is rejected.
+6\. \*\*Underflow:\*\* Attempts to read an empty FIFO and verifies that the request is rejected.
 
-7.) Simultaneous Read/ Write - verifies simultaneous read and write operations when the FIFO contains data.
+7\. \*\*Simultaneous Read/Write:\*\* Verifies simultaneous read and write operations when the FIFO contains data.
 
-8.) Simultaneous Read/ Write while empty - verifies simultaneous read and write when the FIFO is empty.
+8\. \*\*Simultaneous Read/Write While Empty:\*\* Verifies simultaneous read and write operations when the FIFO is empty.
 
-9.) Simultaneous Read/ Write while full - verifies simultaneous read and write when the FIFO is full.
+9\. \*\*Simultaneous Read/Write While Full:\*\* Verifies simultaneous read and write operations when the FIFO is full.
 
-10.) Python-generated Data - tests the 32 8-bit data values generated through the Python script if it is written and read back in the correct order.
-
-
-
-Below are the Behavioral Simulation waveforms:
+10\. \*\*Python-Generated Data:\*\* Verifies that the 32 Python-generated 16-bit values are written and read back in the correct order.
 
 
 
+\### Behavioral Simulation Waveforms
 
+
+
+The behavioral simulation waveforms are shown below.
 
 
 
