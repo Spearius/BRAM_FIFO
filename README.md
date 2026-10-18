@@ -3,11 +3,11 @@
 ## Overview
 This design implements a First-In-First-Out (FIFO) memory container using SystemVerilog HDL and Block RAM (BRAM) in Vivado. The FIFO writes incoming data into memory and reads it in the same order it was written.
 
-
-## Software
+### Software Tools & Languages Used
 - Vivado 2023.1
-- SystemVerilog HDL
-- Python 3
+- - SystemVerilog Hardware Description Language (HDL)
+- Python 3 IDE
+- - Python Programming Language
 
 
 ## Functionality
