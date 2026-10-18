@@ -5,9 +5,9 @@ This design implements a First-In-First-Out (FIFO) memory container using System
 
 ### Software Tools & Languages Used
 - Vivado 2023.1
-- - SystemVerilog Hardware Description Language (HDL)
+  - SystemVerilog Hardware Description Language (HDL)
 - Python 3 IDE
-- - Python Programming Language
+  - Python Programming Language
 
 
 ## Functionality
