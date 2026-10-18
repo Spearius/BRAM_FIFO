@@ -62,6 +62,6 @@ Below is the RTL schematic of the BRAM FIFO which was coded versus generated thr
 
 Below is the IP Block Diagram of the BRAM FIFO:
 
-![IP Generated BRAM-FIFO Block Diagram](Images/RTL_FIFO_BlockDiagram.png)
+![IP Generated BRAM-FIFO Block Diagram](Images/IP_FIFO_BlockDiagram.png)
 
 - To create this IP Generated Block Diagram, Vivado needed a `.v` file versus a `.sv` file. So, `fifo_wrapper.v` was created as a top module to instantiate `sc_fifo.sv` inside. Then, when selecting to create a block diagram, I added `fifo_wrapper.v` to infer the IP Generated Block Diagram.
