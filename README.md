@@ -46,6 +46,13 @@ Below is the behavioral simulation waveform with the testbench values:
   <img src="Images/BRAM_FIFO_Waveform2.png" width="48%">
 </p>
 
+The two waveforms above shows the following:
+1.\ When 'srst' is asserted, all other signals are low except for 'empty'. This shows that reset is clearing all signals and the empty flag is triggered. Also, 'data_out' is reset to zero.
+2.\ The FIFO is storing and receiving the correct data patterns ('0000', 'FFFF', 'AAAA', and '5555') in that intended order and the 'data_count' signal is incrementing to show the amount of data currently stored in the FIFO.
+3.\ From '0000' to '001F', we can see that the FIFO is also storing all 32 data values, filling up the entire FIFO container. Before full, the 'almost_full' signal is asserted followed by the 'full' signal.
+4.\ When the FIFO is full, there is a 'DEAD' data value outputted when more than 32 values are inputted. This 'DEAD' value appears when there is an overflow.
+5.\ All 32 stored values are retrieved in order, then when the 'read_enable' signal is asserted, 'data_count' decreases as 'data_out' returns the values. Once all data values are read from the FIFO, the 'empty' signal is then asserted.  
+
 Below is the behavioral simulation waveform with the Python-generated Script values:
 
 <p align="center">
@@ -53,6 +60,8 @@ Below is the behavioral simulation waveform with the Python-generated Script val
   <img src="Images/BRAM_FIFO_Waveform_PythonGeneratedData2.png" width="48%">
   <img src="Images/BRAM_FIFO_Waveform_PythonGeneratedData3.png" width="48%">
 </p>
+
+6.\ 
 
 
 ## Block Diagram
