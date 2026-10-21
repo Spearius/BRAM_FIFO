@@ -39,10 +39,11 @@ The functionality was verified using a testbench with the following ten test cas
 10\. `Python-Generated Data`: Verifies that the 32 Python-generated 16-bit values are written and read back in the correct order.  
 
 ### Behavioral Simulation Waveforms
-Below is the full behavioral simulation waveform broken into ten images:
+Below is the full behavioral simulation waveform, then the same waveform broken into ten images:
 
 <p align="center">
-  <img src="Images/BRAM_FIFO_Waveform.png" width="48%">
+  <img src="Images/BRAM_FIFO_FullWaveform.png" width = "100%">
+  <img src="Images/BRAM_FIFO_Waveform.png" width="50%">
   <img src="Images/BRAM_FIFO_Waveform2.png" width="48%">
   <img src="Images/BRAM_FIFO_Waveform3.png" width="48%">
   <img src="Images/BRAM_FIFO_Waveform4.png" width="48%">
