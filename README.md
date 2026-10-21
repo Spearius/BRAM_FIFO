@@ -13,11 +13,11 @@ This design implements a First-In-First-Out (FIFO) memory container using System
 ## Functionality
 The parameters for this FIFO are as follows:
 
-- `WIDTH = 16`: Bit width per stored word.
-- `DEPTH = 32`: Maximum number of memory locations.
-- `ALMOST_EMPTY_THRESHOLD = 1`: Threshold indicating when the FIFO is almost empty.
-- `ALMOST_FULL_THRESHOLD = 31`: Threshold indicating when the FIFO is almost full.
-- `READ_LATENCY = 1`: Number of registered output pipeline stages.
+`WIDTH = 16`: Bit width per stored word.
+`DEPTH = 32`: Maximum number of memory locations.
+`ALMOST_EMPTY_THRESHOLD = 1`: Threshold indicating when the FIFO is almost empty.
+`ALMOST_FULL_THRESHOLD = 31`: Threshold indicating when the FIFO is almost full.
+`READ_LATENCY = 1`: Number of registered output pipeline stages.
 
 The FIFO uses the FPGA's internal memory, known as Block RAM (BRAM), to store incoming data. A write pointer determines the memory address where incoming data is stored, while a read pointer determines the memory address from which data is retrieved. A data counter tracks the number of words stored in the FIFO. Based on this counter, status flags indicate whether the FIFO is almost empty, empty, almost full, or full. The write pointer, read pointer, and data counter update on the rising edge of the clock.
 
@@ -39,29 +39,24 @@ The functionality was verified using a testbench with the following ten test cas
 10\. `Python-Generated Data`: Verifies that the 32 Python-generated 16-bit values are written and read back in the correct order.  
 
 ### Behavioral Simulation Waveforms
-Below is the behavioral simulation waveform with the testbench values:
+Below is the full behavioral simulation waveform broken into ten images:
 
 <p align="center">
   <img src="Images/BRAM_FIFO_Waveform.png" width="48%">
   <img src="Images/BRAM_FIFO_Waveform2.png" width="48%">
 </p>
 
-The two waveforms above shows the following:  
-1.\ When 'srst' is asserted, all other signals are low except for 'empty'. This shows that reset is clearing all signals and the empty flag is triggered. Also, 'data_out' is reset to zero.  
-2.\ The FIFO is storing and receiving the correct data patterns ('0000', 'FFFF', 'AAAA', and '5555') in that intended order and the 'data_count' signal is incrementing to show the amount of data currently stored in the FIFO.  
-3.\ From '0000' to '001F', we can see that the FIFO is also storing all 32 data values, filling up the entire FIFO container. Before full, the 'almost_full' signal is asserted followed by the 'full' signal.  
-4.\ When the FIFO is full, there is a 'DEAD' data value outputted when more than 32 values are inputted. This 'DEAD' value appears when there is an overflow.  
-5.\ All 32 stored values are retrieved in order, then when the 'read_enable' signal is asserted, 'data_count' decreases as 'data_out' returns the values. Once all data values are read from the FIFO, the 'empty' signal is then asserted.  
-
-Below is the behavioral simulation waveform with the Python-generated Script values:
-
-<p align="center">
-  <img src="Images/BRAM_FIFO_Waveform_PythonGeneratedData.png" width="48%">
-  <img src="Images/BRAM_FIFO_Waveform_PythonGeneratedData2.png" width="48%">
-  <img src="Images/BRAM_FIFO_Waveform_PythonGeneratedData3.png" width="48%">
-</p>
-
-6.\ 
+The simulation shows all test cases functioning properly:  
+1.\ `Reset`:	At 0–40ns,`srt` is asserted and signals `data_count`, `valid`, and `data_out` are zero while the `empty` status flag is 1.  
+2. `Data Patterns`: At 40–420ns, data values `0000`, `FFFF`, `AAAA`, and `5555` are written into the FIFO, then are read to the output in that same order. As the data values are written, the `data_count` signal increments and decrements to indicate the amount of data values stored in the FIFO.  
+3. `Fill All Memory Locations`: At 420–1,760ns, the FIFO writes `0000` through `001F`. Then, `data_count` reaches 32. Before filling up, the `almost_full` signal is asserted at 31, then the `full` signal is asserted after once the FIFO is full.  
+4. `Overflow`: At	1,760–1,800ns, the FIFO attempts to write DEAD while the FIFO is full, and the `data_count` signal remains 32. `DEAD` occurs when there is an overflow as coded in the simulation source code.  
+5. `Full FIFO Readback`: From 1,800–3,080ns, all data values are read starting from `0000` to `001F`. Then, the `data_count` signal decreases from 32 to 0. The `almost_empty` and `empty` signals are asserted as the FIFO reaches close to empty, then empty.  
+6. `Underflow`: At 3,080–3,120ns, when the FIFO attempts to read a value while empty, the `data_count` signal remains 0 and the `valid` signal stays LOW.  
+7. `Simultaneous read/write`: At	3,120–3,350ns, the FIFO writes `AAAA` and `BBBB`, then reads and writes simultaneously with `CCCC`. The count remains 2 during the simultaneous operation indicating that there are two stored values in the FIFO still.  
+8. `Simultaneous read/write while empty`:	At 3,350–3,490ns, both enables assert while empty. The write is then accepted, but the read is rejected. Then, the `data_count` signal becomes 1.  
+9. `Simultaneous read/write while full`: At	3,490–4,830ns, the FIFO fills to 32, then performs a simultaneous read/write. The `data_count` then decreases to 31.
+10. `Python-generated data`: From	4,830 to 7,350ns, the FIFO writes the 32 generated values from the memory file, fills the FIFO, then reads them back in order. The `data_count` signal then returns to 0.
 
 
 ## Block Diagram
