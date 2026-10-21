@@ -48,42 +48,38 @@ Below is the full behavioral simulation waveform, then the same waveform broken 
 <br>
 
 <p align="center">
-  <img src="Images/BRAM_FIFO_Waveform1.png" width="50%">
-  <img src="Images/BRAM_FIFO_Waveform2.png" width="50%">
+  <img src="Images/BRAM_FIFO_Waveform1.png" width="48%">
+  <img src="Images/BRAM_FIFO_Waveform2.png" width="48%">
 </p>
 
 <br>
 
 <p align="center">
-  <img src="Images/BRAM_FIFO_Waveform3.png" width="50%">
-  <img src="Images/BRAM_FIFO_Waveform4.png" width="50%">
+  <img src="Images/BRAM_FIFO_Waveform3.png" width="48%">
+  <img src="Images/BRAM_FIFO_Waveform4.png" width="48%">
 </p>
 
 <br>
 
 <p align="center">
-  <img src="Images/BRAM_FIFO_Waveform5.png" width="50%">
-  <img src="Images/BRAM_FIFO_Waveform6.png" width="50%">
+  <img src="Images/BRAM_FIFO_Waveform5.png" width="48%">
+  <img src="Images/BRAM_FIFO_Waveform6.png" width="48%">
 </p>
 
 <br>
 
 <p align="center">
-  <img src="Images/BRAM_FIFO_Waveform7.png" width="50%">
-  <img src="Images/BRAM_FIFO_Waveform8.png" width="50%">
+  <img src="Images/BRAM_FIFO_Waveform7.png" width="48%">
+  <img src="Images/BRAM_FIFO_Waveform8.png" width="48%">
 </p>
 
 <br>
 
 <p align="center">
-  <img src="Images/BRAM_FIFO_Waveform10.png" width="50%">
+  <img src="Images/BRAM_FIFO_Waveform9.png" width="48%">
+  <img src="Images/BRAM_FIFO_Waveform10.png" width="48%">
 </p>
 
-<br>
-
-<p align="center">
-  <img src="Images/BRAM_FIFO_Waveform10.png" width="50%">
-</p>
   
 The simulation shows all test cases functioning properly:  
 1.\ `Reset`:	At 0–40ns,`srt` is asserted and signals `data_count`, `valid`, and `data_out` are zero while the `empty` status flag is 1.  
