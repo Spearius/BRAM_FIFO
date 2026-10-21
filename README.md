@@ -44,6 +44,14 @@ Below is the full behavioral simulation waveform broken into ten images:
 <p align="center">
   <img src="Images/BRAM_FIFO_Waveform.png" width="48%">
   <img src="Images/BRAM_FIFO_Waveform2.png" width="48%">
+  <img src="Images/BRAM_FIFO_Waveform3.png" width="48%">
+  <img src="Images/BRAM_FIFO_Waveform4.png" width="48%">
+  <img src="Images/BRAM_FIFO_Waveform5.png" width="48%">
+  <img src="Images/BRAM_FIFO_Waveform6.png" width="48%">
+  <img src="Images/BRAM_FIFO_Waveform7.png" width="48%">
+  <img src="Images/BRAM_FIFO_Waveform8.png" width="48%">
+  <img src="Images/BRAM_FIFO_Waveform9.png" width="48%">
+  <img src="Images/BRAM_FIFO_Waveform10.png" width="48%">
 </p>
 
 The simulation shows all test cases functioning properly:  
@@ -56,7 +64,7 @@ The simulation shows all test cases functioning properly:
 7. `Simultaneous read/write`: At	3,120–3,350ns, the FIFO writes `AAAA` and `BBBB`, then reads and writes simultaneously with `CCCC`. The count remains 2 during the simultaneous operation indicating that there are two stored values in the FIFO still.  
 8. `Simultaneous read/write while empty`:	At 3,350–3,490ns, both enables assert while empty. The write is then accepted, but the read is rejected. Then, the `data_count` signal becomes 1.  
 9. `Simultaneous read/write while full`: At	3,490–4,830ns, the FIFO fills to 32, then performs a simultaneous read/write. The `data_count` then decreases to 31.
-10. `Python-generated data`: From	4,830 to 7,350ns, the FIFO writes the 32 generated values from the memory file, fills the FIFO, then reads them back in order. The `data_count` signal then returns to 0.
+10. `Python-generated data`: From	4,830 to 7,350ns, the FIFO writes the 32 generated values from the memory file, fills the FIFO, then reads them back in order. The `data_count` signal then returns to 0.  
 
 
 ## Block Diagram
@@ -69,3 +77,8 @@ Below is the IP Block Diagram of the BRAM FIFO:
 ![IP Generated BRAM-FIFO Block Diagram](Images/IP_FIFO_BlockDiagram.png)
 
 - To create this IP Generated Block Diagram, Vivado needed a `.v` file versus a `.sv` file. So, `fifo_wrapper.v` was created as a top module to instantiate `sc_fifo.sv` inside. Then, when selecting to create a block diagram, I added `fifo_wrapper.v` to infer the IP Generated Block Diagram.
+
+### Synthesis Utilization Summary
+Below shows the amount of resources used to implement this BRAM FIFO design:
+
+![BRAM-FIFO Synthesis Resource Utilization Summary](Images/Synthesis_Utilization_Report.png)
