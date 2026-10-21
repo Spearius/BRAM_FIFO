@@ -43,7 +43,7 @@ Below is the full behavioral simulation waveform, then the same waveform broken 
 
 <p align="center">
   <img src="Images/BRAM_FIFO_FullWaveform.png" width = "100%">
-  <img src="Images/BRAM_FIFO_Waveform.png" width="50%">
+  <img src="Images/BRAM_FIFO_Waveform1.png" width="50%">
   <img src="Images/BRAM_FIFO_Waveform2.png" width="48%">
   <img src="Images/BRAM_FIFO_Waveform3.png" width="48%">
   <img src="Images/BRAM_FIFO_Waveform4.png" width="48%">
