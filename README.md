@@ -1,14 +1,14 @@
 # BRAM FIFO
 
-## Overview
-This design implements a First-In-First-Out (FIFO) memory container using SystemVerilog HDL and Block RAM (BRAM) in Vivado. The FIFO writes incoming data into memory and reads it in the same order it was written.
-
-### Software Tools & Languages Used
+## Software Tools & Languages Used
 - Vivado 2023.1
   - SystemVerilog Hardware Description Language (HDL)
 - Python 3 IDE
   - Python Programming Language
 
+
+## Overview
+This design implements a First-In-First-Out (FIFO) memory container using SystemVerilog HDL and Block RAM (BRAM) in Vivado. The FIFO writes incoming data into memory and reads it in the same order it was written. Additionally, the program was created using a Tool Command Language (TCL) script which auto populated the project files with its design source and simulation source files.
 
 ## Functionality
 The parameters for this FIFO are as follows:
@@ -21,7 +21,7 @@ The parameters for this FIFO are as follows:
 
 The FIFO uses the FPGA's internal memory, known as Block RAM (BRAM), to store incoming data. A write pointer determines the memory address where incoming data is stored, while a read pointer determines the memory address from which data is retrieved. A data counter tracks the number of words stored in the FIFO. Based on this counter, status flags indicate whether the FIFO is almost empty, empty, almost full, or full. The write pointer, read pointer, and data counter update on the rising edge of the clock.
 
-Additionally, a Python script generates 32 data values. These are 16-bit values stored in hexadecimal format. The testbench loads the values using the `$readmemh` function to verify that all values can be written into and read from the FIFO in the correct order.
+Additionally, another Python TCL script generates 32 data values. These are 16-bit values stored in hexadecimal format. The testbench loads the values using the `$readmemh` function to verify that all values can be written into and read from the FIFO in the correct order.
 
 
 ## Testbench
